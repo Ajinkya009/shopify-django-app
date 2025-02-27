@@ -1,0 +1,15 @@
+ fragment CustomerInfo on Customer {
+    id
+}
+
+query GetOneCustomer($customer_id: ID!){
+    node(id: $customer_id){
+        ...CustomerInfo
+    }
+}
+
+query GetManyCustomers($customer_ids: [ID]!){
+    nodes(ids: $customer_ids){
+        ...CustomerInfo
+    }
+}

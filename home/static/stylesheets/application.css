@@ -5,18 +5,16 @@ body {
 }
 
 h1 { font-weight: normal; font-size: 24px; }
-h1 a { color: #FFFAD5; text-decoration: none; }
 h2 { font-weight: normal; margin-top: 24px; }
 h3 { margin-top: 24px; }
 
 #header {
-  background: #2d3337 url('../images/logo.png') 20px 50% no-repeat;
+  background: #FFF url('../images/awaaz-ai-logo.png') 20px 50% no-repeat;
+  background-size: contain;
   padding: 25px 25px 25px 70px;
-  border-top: 5px solid #1f2326;
+  border-top: 1px solid #1f2326;
   border-bottom: 1px solid #252a2e;
 }
-
-#header h1 { color: #fffad5; }
 
 #login-link {
   float: right;
@@ -38,6 +36,54 @@ h3 { margin-top: 24px; }
   background: #fff;
   border-right: 1px solid #e5e5e5;
   border-bottom: 1px solid #e5e5e5;
+}
+
+.styled-form {
+  margin: 20px 0;
+  padding: 20px;
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.styled-form label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.styled-input, .styled-textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.styled-button {
+  padding: 10px 20px;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.styled-button:hover {
+  background: #0056b3;
+}
+
+.styled-link {
+  display: inline-block;
+  margin-top: 20px;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.styled-link:hover {
+  text-decoration: underline;
 }
 
 #container h1 { margin: 18px 0 27px 0; }
