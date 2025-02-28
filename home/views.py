@@ -1,3 +1,4 @@
+from typing import Any, Dict, List
 from django.shortcuts import render, redirect
 from django.http import HttpRequest, HttpResponse
 from django.core.cache import cache
@@ -71,15 +72,18 @@ def store_days_time(request: 'HttpRequest') -> 'HttpResponse':
         result_data = json.loads(result)
         print(result_data["data"]["orders"]["edges"])
         nodes = result_data["data"]["orders"]["edges"]
+        product_list: List[Dict[str, Any]] = []
         for node in nodes:
             phone = node["node"]["customer"]["phone"]
             customer_name = node["node"]["customer"]["firstName"]
             customer_id = node["node"]["customer"]["id"]
-            product_id = node["node"]["lineItems"]["edges"][0]["node"]["id"]
-            product_name = node["node"]["lineItems"]["edges"][0]["node"]["title"]
-            quantity = node["node"]["lineItems"]["edges"][0]["node"]["quantity"]
-            print(f"Customer Name: {customer_name}, Phone: {phone}, Product id: {product_id}, Product Name: {product_name}, Quantity: {quantity}")
-            encoded_params = json.dumps({"customer_name": customer_name, "customer_id":customer_id, "product_id": product_id, "product_name": product_name, "quantity": quantity})
+            products:List[Any] = node["node"]["lineItems"]["edges"]
+            for product in products:
+                product_id = product["node"]["id"]
+                product_name = product["node"]["title"]
+                quantity = product["node"]["quantity"]
+                product_list.append({"product_id":product_id, "product_name":product_name, "quantity":quantity})
+            encoded_params = json.dumps({"customer_name": customer_name, "customer_id":customer_id, "product_list": product_list})
             if phone:
                 schedule_call(phone,encoded_params)
                 pass
